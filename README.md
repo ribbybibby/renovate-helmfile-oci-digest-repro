@@ -14,23 +14,25 @@ Reproduce by running Renovate against this repo:
 ```
 docker run --rm \
   -e RENOVATE_TOKEN=<your-github-token> \
-  -e RENOVATE_DRY_RUN=lookup \
   -e LOG_LEVEL=debug \
   ghcr.io/renovatebot/renovate:44.11.1 \
   ribbybibby/renovate-helmfile-oci-digest-repro
 ```
 
-Extraction result:
+Renovate finds and extracts the release:
 
 ```
- INFO: Dependency extraction complete (repository=ribbybibby/renovate-helmfile-oci-digest-repro, baseBranch=main)
+DEBUG: Found helmfile package files
+DEBUG: Found 1 package file(s)
+ INFO: Dependency extraction complete (baseBranch=main)
        "stats": {
          "managers": {"helmfile": {"fileCount": 1, "depCount": 1}},
          "total": {"fileCount": 1, "depCount": 1}
        }
 ```
 
-The extracted dep:
+The extracted dep carries the `@sha256:...` suffix in `depName`/`packageName`
+and is marked as unsupported:
 
 ```json
 {
@@ -41,6 +43,17 @@ The extracted dep:
   "skipReason": "unsupported-chart-type",
   "updates": []
 }
+```
+
+The run finishes with nothing outdated and no branches created:
+
+```
+DEBUG: Repository libYears
+       "libYears": {"managers": {"helmfile": 0}, "total": 0},
+       "dependencyStatus": {"outdated": 0, "total": 1}
+...
+ INFO: Repository finished
+       "result": "done"
 ```
 
 ## Expected behaviour
