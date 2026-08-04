@@ -1,0 +1,4 @@
+releases:
+  - name: grafana
+    chart: oci://ghcr.io/grafana/helm-charts/grafana@sha256:3d75dc3173c3fb07eaa8853283f38558c7c27259f7ed00cf8c096173667426a1
+    version: 10.5.15
