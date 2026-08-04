@@ -68,4 +68,4 @@ Renovate `44.11.1` (upstream `ghcr.io/renovatebot/renovate`).
 
 ## Related issue
 
-TODO: link once filed on renovatebot/renovate.
+Filed as <https://github.com/renovatebot/renovate/discussions/45054>.
